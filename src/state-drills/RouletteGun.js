@@ -10,6 +10,10 @@ class RouletteGun extends React.Component{
         spinningTheChamber : false
     };
 
+    componentWillUnmount(){
+        clearTimeout(this.timeout)
+    }
+
     getText(){
         if( this.state.spinningTheChamber){
             return 'spinning the chamber and pulling the trigger! ....'
@@ -27,7 +31,7 @@ class RouletteGun extends React.Component{
             spinningTheChamber: true
         })
 
-        setTimeout(() => {
+        this.timeout = setTimeout(() => {
             let num = Math.ceil(Math.random() * 8);
             console.log("num: " + num);
             
